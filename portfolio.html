@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjun Divraniya | Portfolio - Full Stack Developer & UI/UX Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #a855f7;
+            --accent-color: #ec4899;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1a0f2e 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Navigation/Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.1) 0%, 
+                rgba(168, 85, 247, 0.1) 50%, 
+                rgba(236, 72, 153, 0.1) 100%);
+            padding: 2rem;
+            margin-top: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2), transparent);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.05) 0%, 
+                rgba(168, 85, 247, 0.05) 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .about-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Education Section */
+        #education {
+            background: var(--dark-bg);
+        }
+
+        .education-timeline {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(168, 85, 247, 0.1));
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            padding-left: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px 0 0 15px;
+        }
+
+        .education-year {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-institution {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.05) 0%, 
+                rgba(168, 85, 247, 0.05) 100%);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .skill-category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.2), 
+                rgba(168, 85, 247, 0.2));
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-color: var(--primary-color);
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--dark-bg);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(168, 85, 247, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            margin-left: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-badge {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary-color);
+        }
+
+        /* Experience Section */
+        #experience {
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.05) 0%, 
+                rgba(168, 85, 247, 0.05) 100%);
+        }
+
+        .experience-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .experience-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .experience-item h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Hobbies Section */
+        #hobbies {
+            background: var(--dark-bg);
+        }
+
+        .hobbies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .hobby-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(236, 72, 153, 0.1));
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+        }
+
+        .hobby-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hobby-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .hobby-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .hobby-card li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            margin-left: 0;
+        }
+
+        .hobby-card li::before {
+            content: '→ ';
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.05) 0%, 
+                rgba(168, 85, 247, 0.05) 100%);
+            text-align: center;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-card a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                margin-top: 120px;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 2.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero {
+                margin-top: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">AD</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Arjun Divraniya</h1>
+            <p class="subtitle">B.Tech Computer Science Student | Full Stack Developer | UI/UX Designer | Photographer</p>
+            <p class="hero-description">
+                I'm passionate about building beautiful, functional web applications and creating memorable digital experiences. 
+                With expertise in full-stack development, UI/UX design, and a keen eye for photography, I bring creativity and 
+                technical excellence to every project I undertake.
+            </p>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Hi! I'm Arjun Divraniya, a B.Tech Computer Science and Engineering student at Rai University. 
+                    I'm passionate about technology, design, and creative expression through various mediums.
+                </p>
+                <p>
+                    I have a strong interest in full-stack web development, where I love building scalable applications 
+                    from the ground up. My expertise spans across modern frameworks and technologies that help me create 
+                    seamless user experiences.
+                </p>
+                <p>
+                    Beyond coding, I'm deeply interested in UI/UX design, where I design intuitive interfaces in Figma 
+                    and craft experiences that delight users. I also have a passion for photography, capturing moments 
+                    of nature and urban landscapes, and spending time perfecting them through editing.
+                </p>
+                <p>
+                    I believe in continuous learning and staying updated with the latest trends in technology and design. 
+                    When I'm not coding or designing, you'll find me exploring new places with my camera or experimenting 
+                    with new technologies.
+                </p>
+            </div>
+            <div class="about-image">📱</div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-timeline">
+            <div class="education-card">
+                <div class="education-year">PRIMARY & SECONDARY</div>
+                <div class="education-title">Alpha Vidhya Sankul</div>
+                <div class="education-institution">Junagadh, Gujarat, India</div>
+                <p>Completed schooling with strong foundation in academics and co-curricular activities. 
+                   Developed interest in technology and design during these formative years.</p>
+            </div>
+            <div class="education-card">
+                <div class="education-year">CURRENTLY PURSUING</div>
+                <div class="education-title">B.Tech in Computer Science & Engineering</div>
+                <div class="education-institution">Rai University, Ahmedabad, Gujarat, India</div>
+                <p>Currently pursuing my bachelor's degree with focus on full-stack development, software engineering, 
+                   and emerging technologies. Actively involved in projects, hackathons, and technical clubs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <div class="skill-category-title">🎨 Frontend</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">⚙️ Backend</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">Python</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">💾 Database</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Firebase</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">🛠️ Tools & Platforms</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Figma</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">🎬 Design & Media</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Photoshop</span>
+                    <span class="skill-tag">UI/UX Design</span>
+                    <span class="skill-tag">Photography</span>
+                    <span class="skill-tag">Photo Editing</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">☁️ Cloud & DevOps</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS Basics</span>
+                    <span class="skill-tag">EC2</span>
+                    <span class="skill-tag">Nginx</span>
+                    <span class="skill-tag">Deployment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-header">🎥 Photographer Booking Platform</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        A comprehensive platform connecting clients with professional photographers
+                    </p>
+                    <ul class="project-features">
+                        <li>Find photographers by location</li>
+                        <li>View photographer portfolios</li>
+                        <li>Real-time chat functionality</li>
+                        <li>Easy booking system</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Express</span>
+                        <span class="tech-badge">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">💼 Personal Portfolio Website</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Modern portfolio with smooth animations and interactive elements
+                    </p>
+                    <ul class="project-features">
+                        <li>Responsive design</li>
+                        <li>Smooth scroll animations</li>
+                        <li>Project showcase</li>
+                        <li>Contact integration</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">📺 YouTube Clone</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Full-featured video streaming platform clone
+                    </p>
+                    <ul class="project-features">
+                        <li>Video upload & streaming</li>
+                        <li>User authentication</li>
+                        <li>Comment system</li>
+                        <li>Search functionality</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">🎵 Spotify Clone</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Music streaming application with playlist management
+                    </p>
+                    <ul class="project-features">
+                        <li>Music player</li>
+                        <li>Playlist creation</li>
+                        <li>Search songs</li>
+                        <li>User preferences</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">API Integration</span>
+                        <span class="tech-badge">Redux</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">🎬 Disney+ Clone</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Streaming platform UI with content browsing and recommendations
+                    </p>
+                    <ul class="project-features">
+                        <li>Movie/Show catalog</li>
+                        <li>Recommendations</li>
+                        <li>Beautiful UI design</li>
+                        <li>Responsive layout</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">CSS Modules</span>
+                        <span class="tech-badge">API</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">🚌 RedBus Clone</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Bus booking platform with search and reservation features
+                    </p>
+                    <ul class="project-features">
+                        <li>Bus search</li>
+                        <li>Schedule browsing</li>
+                        <li>Booking system</li>
+                        <li>Responsive design</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">🏆 Azure AI VS Code Extension</div>
+                <div class="project-content">
+                    <p class="project-description">
+                        AI-powered code suggestion extension powered by Azure AI (Hackathon Winner)
+                    </p>
+                    <ul class="project-features">
+                        <li>Smart code suggestions</li>
+                        <li>RAG Implementation</li>
+                        <li>Real-time assistance</li>
+                        <li>🥇 Won 1st Place in Hackathon</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-badge">Azure SDK</span>
+                        <span class="tech-badge">RAG</span>
+                        <span class="tech-badge">VS Code API</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-content">
+            <div class="experience-item">
+                <h4>🎨 UI/UX Design</h4>
+                <p><strong>Skills:</strong> Figma, Photoshop, Wireframing, Prototyping, User Research</p>
+                <p>
+                    Experienced in designing complete UI systems, creating wireframes and high-fidelity prototypes, 
+                    and implementing user-centered design principles. I've designed interfaces for multiple projects 
+                    and collaborated with developers to bring designs to life.
+                </p>
+            </div>
+
+            <div class="experience-item">
+                <h4>💻 Full Stack Development</h4>
+                <p><strong>Technologies:</strong> React, Node.js, MongoDB, Express.js</p>
+                <p>
+                    Built multiple full-stack applications from concept to deployment. Experience with frontend frameworks, 
+                    backend APIs, database design, and cloud deployment. Familiar with best practices in code organization, 
+                    security, and performance optimization.
+                </p>
+            </div>
+
+            <div class="experience-item">
+                <h4>🚀 Project Implementation</h4>
+                <p><strong>Focus Areas:</strong> Real-world Applications, Problem Solving, Team Collaboration</p>
+                <p>
+                    Successfully completed real-world projects involving complex requirements, user authentication, payment 
+                    integration, and real-time features. Strong understanding of software development lifecycle and agile 
+                    methodologies.
+                </p>
+            </div>
+
+            <div class="experience-item">
+                <h4>🏆 Hackathon & Competitions</h4>
+                <p><strong>Achievement:</strong> 1st Place - Azure AI VS Code Extension Hackathon</p>
+                <p>
+                    Active participant in hackathons and coding competitions. Won 1st place for developing an innovative 
+                    Azure AI-powered VS Code extension. Demonstrates ability to innovate, work under pressure, and deliver 
+                    quality solutions quickly.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies">
+        <h2 class="section-title">Hobbies & Interests</h2>
+        <div class="hobbies-container">
+            <div class="hobby-card">
+                <div class="hobby-icon">📸</div>
+                <h3>Photography</h3>
+                <ul>
+                    <li>Nature Photography</li>
+                    <li>Landscape Photography</li>
+                    <li>Photo Editing & Retouching</li>
+                    <li>Sharing creative work online</li>
+                </ul>
+            </div>
+
+            <div class="hobby-card">
+                <div class="hobby-icon">💻</div>
+                <h3>Coding & Development</h3>
+                <ul>
+                    <li>Building web applications</li>
+                    <li>Learning new technologies</li>
+                    <li>Open source contributions</li>
+                    <li>Problem solving on platforms</li>
+                </ul>
+            </div>
+
+            <div class="hobby-card">
+                <div class="hobby-icon">🎨</div>
+                <h3>Design & Creativity</h3>
+                <ul>
+                    <li>UI/UX Design</li>
+                    <li>Graphic Design</li>
+                    <li>Digital Art</li>
+                    <li>Creative Problem Solving</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">
+            Feel free to reach out! I'm always open to interesting projects and opportunities.
+        </p>
+        <div class="contact-content">
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <a href="mailto:arjun.divraniya@example.com">arjun.divraniya@example.com</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/arjundivraniya" target="_blank">linkedin.com/in/arjundivraniya</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🐙</div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/arjundivraniya" target="_blank">github.com/arjundivraniya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-text">
+            © 2026 Arjun Divraniya | Portfolio
+        </div>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-text" style="font-size: 0.9rem;">
+            Built with passion using HTML & CSS
+        </div>
+    </footer>
+</body>
+</html>
